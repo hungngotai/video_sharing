@@ -72,3 +72,5 @@ end
 group :test do
   gem "shoulda-matchers", "~> 5.0"
 end
+
+gem "devise-jwt", "~> 0.10.0"
