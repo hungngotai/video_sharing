@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :videos, only: %i[index create]
+    end
+  end
+  devise_for :users,
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   root 'homepage#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get '/*path' => 'homepage#index'
 end
