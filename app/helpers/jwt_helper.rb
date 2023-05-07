@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module JwtHelper
   def decode_user(token)
     Warden::JWTAuth::UserDecoder.new.call token, :user, nil if token

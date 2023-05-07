@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
     include JwtHelper
@@ -10,8 +12,8 @@ module ApplicationCable
     protected
 
     def find_verified_user
-      token = Base64.decode64(request.params['token']).split(' ')[1]
-      if verified_user = decode_user(token)
+      token = Base64.decode64(request.params['token']).split[1]
+      if (verified_user = decode_user(token))
         verified_user
       else
         reject_unauthorized_connection

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable/:token'
 
@@ -7,10 +9,10 @@ Rails.application.routes.draw do
     end
   end
   devise_for :users,
-  controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
-  }
+             controllers: {
+               sessions: 'users/sessions',
+               registrations: 'users/registrations'
+             }
 
   root 'homepage#index'
   get '/*path' => 'homepage#index'

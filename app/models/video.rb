@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Video < ApplicationRecord
-  validates :src, presence: true, format: { with: URI.regexp, message: "only allows url" }
+  validates :src, presence: true, format: { with: URI::DEFAULT_PARSER.make_regexp, message: 'only allows url' }
 end

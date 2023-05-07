@@ -1,39 +1,41 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'POST /api/v1/videos', type: :request do
   let(:authorization) { '' }
-  let(:headers) {
+  let(:headers) do
     {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }
-  }
-  let(:authorized_headers) {
+  end
+  let(:authorized_headers) do
     {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': authorization
     }
-  }
+  end
   let(:src) { 'https://www.youtube.com/embed/uCHuTxVYtsk' }
   let(:description) { 'description' }
-  let(:video) {
-    { src: src, description: description }
-  }
-  let(:params) {
-    { video: video }
-  }
+  let(:video) do
+    { src:, description: }
+  end
+  let(:params) do
+    { video: }
+  end
   let(:email) { 'test@email.com' }
   let(:password) { 'password' }
-  let(:user) {
-    { email: email, password: password }
-  }
-  let(:user_params) {
-    { user: user }
-  }
+  let(:user) do
+    { email:, password: }
+  end
+  let(:user_params) do
+    { user: }
+  end
 
   context 'when request is unauthorized' do
-    before { post '/api/v1/videos', params: params.to_json, headers: headers }
+    before { post '/api/v1/videos', params: params.to_json, headers: }
 
     it 'returns http unauthorized' do
       expect(response).to have_http_status(:unauthorized)
@@ -47,10 +49,10 @@ RSpec.describe 'POST /api/v1/videos', type: :request do
   context 'when request is authorized' do
     let!(:create_user) { User.create(user) }
 
-    let(:authorization) {
-      post '/users/sign_in', params: user_params.to_json, headers: headers
+    let(:authorization) do
+      post('/users/sign_in', params: user_params.to_json, headers:)
       response.headers['Authorization']
-    }
+    end
 
     before { post '/api/v1/videos', params: params.to_json, headers: authorized_headers }
 
@@ -61,8 +63,9 @@ RSpec.describe 'POST /api/v1/videos', type: :request do
 
       it 'returns body with data' do
         body = response.parsed_body
-        result = { message: body['message'], video: { src: body['video']['src'], description: body['video']['description'] }}
-        expect(result).to eq({ message: 'Create', video: { src: src, description: description } })
+        result = { message: body['message'],
+                   video: { src: body['video']['src'], description: body['video']['description'] } }
+        expect(result).to eq({ message: 'Create', video: { src:, description: } })
       end
     end
 
@@ -74,7 +77,7 @@ RSpec.describe 'POST /api/v1/videos', type: :request do
       end
 
       it 'returns body with error' do
-        video = Video.new()
+        video = Video.new
         video.validate
         expect(response.parsed_body).to eq({ error: video.errors.full_messages }.as_json)
       end
