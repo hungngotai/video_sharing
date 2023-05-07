@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable/:token'
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :videos, only: %i[index create]
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
   root 'homepage#index'
   get '/*path' => 'homepage#index'
 end
