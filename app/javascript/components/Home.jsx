@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import toastr from "toastr";
+import Notification from "./Notification";
+import moment from "moment";
 
 export default () => {
   const navigate = useNavigate();
@@ -20,27 +21,33 @@ export default () => {
         throw new Error("Network response was not ok.");
       })
       .then(({ data }) => {
-        toastr.success("aaaaaaa")
         setVideos(data)
       })
       .catch(() => {
         localStorage.removeItem("token")
-        navigate("/signin")
+        navigate("/sign_in")
       });
   }, []);
 
   const allVideos = videos.map((video, index) => (
     <div className="col" key={index}>
       <div className="card shadow-sm">
-        <iframe width="100%" height="225" src={video.src}></iframe>
+        <iframe
+          width="100%"
+          height="225"
+          src={video.src}
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen="allowFullScreen"
+        />
         <div className="card-body">
           <p className="card-text">{video.description}</p>
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group">
-              <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
+              <button type="button" className="btn btn-sm btn-outline-secondary"><i class="bi bi-hand-thumbs-up"></i></button>
+              <button type="button" className="btn btn-sm btn-outline-secondary"><i class="bi bi-hand-thumbs-down"></i></button>
             </div>
-            <small className="text-body-secondary">9 mins</small>
+            <small className="text-body-secondary">{ moment(video.created_at).fromNow() }</small>
           </div>
         </div>
       </div>
@@ -56,15 +63,14 @@ export default () => {
 
   return (
   <main>
-
     <section className="py-5 text-center container">
       <div className="row py-lg-5">
         <div className="col-lg-6 col-md-8 mx-auto">
-          <h1 className="fw-light">Album example</h1>
-          <p className="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+          <h1 className="fw-light">Youtube Video Sharing</h1>
+          <p className="lead text-body-secondary">Share your favorite you videos</p>
           <p>
-            <a href="#" className="btn btn-primary my-2">Main call to action</a>
-            <a href="#" className="btn btn-secondary my-2">Secondary action</a>
+            <Link to="/share" className="btn btn-primary my-2">Share a new video</Link>
+            <a href="#" className="btn btn-secondary my-2">Sign out</a>
           </p>
         </div>
       </div>
@@ -77,5 +83,7 @@ export default () => {
         </div>
       </div>
     </div>
+
+    { localStorage.getItem("token") ? <Notification channel={ "NotificationChannel" } /> : null }
   </main>
 )};
