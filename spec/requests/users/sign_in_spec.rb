@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'POST users/sign_in', type: :request do
+RSpec.describe 'POST users/sign_in' do
   let(:email) { 'test@email.com' }
   let(:password) { 'password' }
   let(:user) do
@@ -13,12 +13,12 @@ RSpec.describe 'POST users/sign_in', type: :request do
   end
   let(:headers) do
     {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     }
   end
 
-  context 'When credentials is invalid' do
+  context 'when credentials is invalid' do
     before { post '/users/sign_in', params: params.to_json, headers: }
 
     it 'returns http unauthorized' do
@@ -30,7 +30,7 @@ RSpec.describe 'POST users/sign_in', type: :request do
     end
   end
 
-  context 'When credentials is valid' do
+  context 'when credentials is valid' do
     let!(:current_user) { User.create(user) }
 
     before { post '/users/sign_in', params: params.to_json, headers: }

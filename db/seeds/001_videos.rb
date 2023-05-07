@@ -7,4 +7,4 @@ urls = [
 ]
 
 urls.each { |url| Video.new(src: url).save! }
-p '001 > Videos created!'
+Rails.logger.debug '001 > Videos created!'

@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe Video, type: :model do
+RSpec.describe Video do
   describe 'validations' do
-    it { should validate_presence_of(:src) }
-    it { should allow_value('https://youtu.be/uCHuTxVYtsk').for(:src) }
+    it { is_expected.to validate_presence_of(:src) }
+    it { is_expected.to allow_value('https://youtu.be/uCHuTxVYtsk').for(:src) }
   end
 end

@@ -2,19 +2,19 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /api/v1/videos', type: :request do
+RSpec.describe 'GET /api/v1/videos' do
   let(:authorization) { '' }
   let(:headers) do
     {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     }
   end
   let(:authorized_headers) do
     {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': authorization
+      Authorization: authorization
     }
   end
   let(:email) { 'test@email.com' }

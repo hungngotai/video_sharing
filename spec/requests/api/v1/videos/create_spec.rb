@@ -2,19 +2,19 @@
 
 require 'rails_helper'
 
-RSpec.describe 'POST /api/v1/videos', type: :request do
+RSpec.describe 'POST /api/v1/videos' do
   let(:authorization) { '' }
   let(:headers) do
     {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     }
   end
   let(:authorized_headers) do
     {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': authorization
+      Authorization: authorization
     }
   end
   let(:src) { 'https://www.youtube.com/embed/uCHuTxVYtsk' }
@@ -47,9 +47,8 @@ RSpec.describe 'POST /api/v1/videos', type: :request do
   end
 
   context 'when request is authorized' do
-    let!(:create_user) { User.create(user) }
-
     let(:authorization) do
+      User.create(user)
       post('/users/sign_in', params: user_params.to_json, headers:)
       response.headers['Authorization']
     end

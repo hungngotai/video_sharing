@@ -1,11 +1,18 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
-    - 'spec/**/*'
+    - 'vendor/**/*'
     - 'bin/bundle'
 Style:
   Enabled: false
 Naming/AccessorMethodName:
+  Enabled: false
+Rails/I18nLocaleTexts:
+  Enabled: false
+RSpec/MultipleMemoizedHelpers:
   Enabled: false
