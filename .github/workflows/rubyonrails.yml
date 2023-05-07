@@ -18,6 +18,7 @@ jobs:
           POSTGRES_PASSWORD: password
     env:
       RAILS_ENV: test
+      RAILS_MASTER_KEY: 0ae02b8af20e76e851a37144ccf75b35
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
       - name: Checkout code
@@ -29,7 +30,7 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
       - name: Run tests
-        run: bin/rspec
+        run: bundle exec rspec spec/
 
   lint:
     runs-on: ubuntu-latest
