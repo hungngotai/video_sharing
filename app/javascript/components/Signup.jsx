@@ -73,7 +73,7 @@ export default () => {
             <label htmlFor="floatingPassword">Password</label>
           </div>
           <button className="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
-          <Link to="/signin" className="d-block mt-3">Go to Sign in</Link>
+          <Link to="/sign_in" className="d-block mt-3">Go to Sign in</Link>
           <p className="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
         </form>
       </main>
