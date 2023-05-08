@@ -2,6 +2,7 @@
 1. [Features](#features)
 2. [Local Development](#local-development)
 3. [Docker Development](#docker-development)
+4. [How to run test](#how-to-run-test)
 
 # Features:
 1. Sign in/ Sign up
@@ -40,3 +41,20 @@
     # Setting up database - you must  app service first:
     docker compose exec app bundle exec rails db:setup
 
+# How to run test:
+## With local machine:
+    # Run unit test
+    rspec
+## With docker:
+    # Run unit test
+    docker compose run app_test bundle exec rspec
+
+# User document:
+
+## Brief:
+
+- You need to sign in or sign up before access another pages
+- You can switch between Sign In or Sign Up pages
+- You can sign up without confirm your email address
+- Home page list all of sharing videos at once
+- From Home page, you can access to Share page or you can notify about new shared video
