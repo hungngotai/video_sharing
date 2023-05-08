@@ -58,11 +58,13 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'brakeman', '~> 5.4'
   gem 'bundler-audit', '~> 0.9.1'
+  gem 'capybara', '~> 3.32', '>= 3.32.2'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
   gem 'rubocop', '~> 1.50'
   gem 'rubocop-rails', '~> 2.19'
   gem 'rubocop-rspec', '~> 2.22'
+  gem 'selenium-webdriver', '~> 4.4'
 end
 
 group :development do

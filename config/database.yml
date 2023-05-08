@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: <%= ENV['DB_HOST'] || '0.0.0.0' %>
-  username: <%= ENV['DB_USER'] || 'postgres' %>
+  username: <%= ENV['DB_USER'] || 'hungngo' %>
   password: <%= ENV['DB_PASSWORD'] %>
   port: <%= ENV['DB_PORT'] || 5432 %>
   pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
