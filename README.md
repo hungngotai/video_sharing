@@ -1,4 +1,5 @@
 # Tab contents:
+0. [App Home](https://video-sharing-nthung.herokuapp.com/sign_in)
 1. [Features](#features)
 2. [Local Development](#local-development)
 3. [Docker Development](#docker-development)
@@ -57,4 +58,9 @@
 - You can switch between Sign In or Sign Up pages
 - You can sign up without confirm your email address
 - Home page list all of sharing videos at once
-- From Home page, you can access to Share page or you can notify about new shared video
+- From Home page, you can access to Share page or you can be notify about new shared video
+
+# Further improvement - future features:
+1. Paginate - Infinity scroll
+2. Like/Unlike
+3. User's sharing videos

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Notification from "./Notification";
 import moment from "moment";
+import toastr from "toastr";
 
 export default () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ export default () => {
       }
     }).then((res) => {
       localStorage.removeItem("token")
+      toastr.success("You are signed out")
       navigate("/sign_in")
     })
   }
@@ -49,16 +51,15 @@ export default () => {
           width="100%"
           height="225"
           src={video.src}
-          frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen="allowFullScreen"
+          allowFullScreen="allowFullScreen"
         />
         <div className="card-body">
           <p className="card-text">{video.description}</p>
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group">
-              <button type="button" className="btn btn-sm btn-outline-secondary"><i class="bi bi-hand-thumbs-up"></i></button>
-              <button type="button" className="btn btn-sm btn-outline-secondary"><i class="bi bi-hand-thumbs-down"></i></button>
+              <button type="button" className="btn btn-sm btn-outline-secondary"><i className="bi bi-hand-thumbs-up"></i></button>
+              <button type="button" className="btn btn-sm btn-outline-secondary"><i className="bi bi-hand-thumbs-down"></i></button>
             </div>
             <small className="text-body-secondary">{ moment(video.created_at).fromNow() }</small>
           </div>

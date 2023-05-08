@@ -32,17 +32,17 @@ export default () => {
       },
       body: JSON.stringify(body),
     })
-      .then((response) => {
-        if (response.ok) {
-          localStorage.setItem('token', response.headers.get('authorization'))
-          return response.json();
-        }
-        throw new Error("Something went wrong.");
-      })
-      .then((response) => {
-        toastr.success(response.message)
-        navigate("/")
-      })
+    .then((response) => {
+      localStorage.setItem('token', response.headers.get('authorization'))
+
+      return response.json()
+    })
+    .then((data) => {
+      if (data.error) { throw new Error(data.error) }
+
+      toastr.success(data.message)
+      navigate("/")
+    })
       .catch((error) => toastr.error(error.message));
   };
 
