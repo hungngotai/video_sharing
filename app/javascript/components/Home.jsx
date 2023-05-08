@@ -29,6 +29,19 @@ export default () => {
       });
   }, []);
 
+  const onClickLogout = () => {
+    const url = "/users/sign_out";
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Authorization": localStorage.getItem("token")
+      }
+    }).then((res) => {
+      localStorage.removeItem("token")
+      navigate("/sign_in")
+    })
+  }
+
   const allVideos = videos.map((video, index) => (
     <div className="col" key={index}>
       <div className="card shadow-sm">
@@ -70,7 +83,7 @@ export default () => {
           <p className="lead text-body-secondary">Share your favorite you videos</p>
           <p>
             <Link to="/share" className="btn btn-primary my-2">Share a new video</Link>
-            <a href="#" className="btn btn-secondary my-2">Sign out</a>
+            <a onClick={onClickLogout} className="btn btn-secondary my-2">Sign out</a>
           </p>
         </div>
       </div>
