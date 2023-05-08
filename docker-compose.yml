@@ -19,8 +19,9 @@ services:
       - bundle:/bundle
     environment:
       RAILS_ENV: development
-      RAILS_MASTER_KEY: 45532580144c978849782aa87acb07bf # It should be share internal
+      RAILS_MASTER_KEY: fa3fee7ae9d7ecf68987fe9b9f6e6cc9 # It should be share internally and set it to config/credentials/development.key
       DB_HOST: postgres
+      DB_USER: postgres
       DB_PASSWORD: 123456a@
   postgres:
     image: postgres:14
@@ -43,12 +44,16 @@ services:
       - postgres
       - redis
     ports:
-      - "3001:3000"
+      - "3000:3000"
     volumes:
       - .:/usr/src/app
       - bundle:/bundle
     environment:
       RAILS_ENV: test
+      RAILS_MASTER_KEY: 0ae02b8af20e76e851a37144ccf75b35 # It should be share internally and set it to config/credentials/development.key
+      DB_HOST: postgres
+      DB_USER: postgres
+      DB_PASSWORD: 123456a@
 volumes:
   bundle:
   db_data:
