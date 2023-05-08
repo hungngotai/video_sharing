@@ -21,7 +21,6 @@ module Api
       private
 
       def video_params
-        binding.break
         params[:video][:src].gsub!("watch?v=", "embed/")
         params.require(:video).permit(:src, :description)
       end
